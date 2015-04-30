@@ -8,7 +8,7 @@
  *
  * @author Robbie Hott
  */
-public class ReconciliationEngine {
+class ReconciliationEngine {
 
     private $results;
     /*
@@ -16,20 +16,20 @@ public class ReconciliationEngine {
      * the battery of tests.  A user may chose a list of tests, a preset list,
      * or write their own. 
      */ 
-     private $tests;
+    private $tests;
 
     /*
      * Constructor
      */
-    public __construct() {
-
+    public function __construct() {
+        return;
     }
 
     /*
      * Destructor
      */
-    public __destruct() {
-
+    public function __destruct() {
+        return;
     }
 
 }

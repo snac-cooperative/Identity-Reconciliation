@@ -1,7 +1,7 @@
 <?php
 
 
-/****************************************************
+/**
  * Stage Interface
  *
  * Defines the interface for each of the stages.  Each stage will be called
@@ -12,7 +12,7 @@
  * @author Robbie Hott
  */
 
-public interface stage {
+interface stage {
 
     /**
      * Run function

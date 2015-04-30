@@ -13,7 +13,7 @@
  *
  * @author Robbie Hott
  */
-public abstract class shell implements stage {
+abstract class shell implements stage {
 
     /**
      * Constants
