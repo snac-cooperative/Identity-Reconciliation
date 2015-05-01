@@ -11,20 +11,22 @@
  * will be properly passed to the shell script defined by the $script_name
  * field.
  *
+ * The shell script output must be of the form:
+ * ```
+ * ##.### identity string
+ * ##.## identity string
+ * ...
+ * ```
+ *
  * @author Robbie Hott
  */
 abstract class shell implements stage {
 
     /**
-     * Constants
-     */
-    const OUTPUT_STDOUT = 0;
-    const OUTPUT_RETVAL = 1;
-
-    /**
      * Shell script to run.
      *
-     * This is the script path and name, including parameters.  It should be of the form:
+     * This is the script path and name, including parameters.  It should be of
+     * the form:
      *
      * `/path/to/script [options] STRING`
      *
@@ -33,15 +35,19 @@ abstract class shell implements stage {
      */
     protected $script_name;
 
-    /**
-     * Return value location
-     *
-     * Boolean variable that defines whether the output of the script will be
-     * returned on standard out (STDOUT) or will be returned as the exit value
-     * of the script.  Use one of the static members above.
-     */
-    protected $script_output = self::OUTPUT_STDOUT;
 
+    /**
+     * Combining function
+     *
+     * This function defines which parts of the identity object should be used
+     * as command line argument to the shell script. It takes an identity
+     * object, comines the interested parts of the identity together, then
+     * returns the resulting string.
+     *
+     * @param identity $identity The identity to parse.  
+     * @return string The combined string that will be sent to the shell script.
+     */
+    protected combine_string($identity);
 
     /**
      * Run function
@@ -51,17 +57,24 @@ abstract class shell implements stage {
      * defined output method and returns that to the caller. The string will be
      * escaped and wrapped with single quotes.
      *
-     * @param string $string The string to be parsed and/or matched.  
-     * @return float A numerical value representing this string's value in regards to
+     * @param identity $search The identity to be evaluated.
+     * @param identity[] $list A list of identities to evaluate against.  This
+     * may be null.  
+     * @return array An array of matches and strengths,
+     * `{"id":identity, "strength":float}`.
      * the stage's definition
      *
      */
-    public function run($string) { 
+    public function run($search, $list) { 
 
-        // If the string is empty, just return false to note that this did not
-        // actually complete
-        if (empty($string)) {
-            return false;
+        // Assume list is null.  We're not using it now
+        
+        // Result list
+        $results = array();
+
+        // if search is null, then don't complete
+        if ($search == null) {
+            return $results;
         }
 
         // Buffers for output and return value
@@ -69,7 +82,7 @@ abstract class shell implements stage {
         $retval = PHP_INT_MAX;
 
         // Clean up the string
-        $cleaned = escapeshellarg($string);
+        $cleaned = escapeshellarg($this->combine_string($search));
 
         // Replace STRING with the cleaned string
         $toexec = str_replace('STRING', $cleaned, $this->script_name);
@@ -78,21 +91,16 @@ abstract class shell implements stage {
         exec($toexec, $output, $retval);
 
         // Handle the output
-        switch($this->script_output) {
-            case self::OUTPUT_STDOUT:
-                if (!empty($output)) {
-                    $return = trim($output[0]);
-                    
-                    // Check to see if the return value is numeric
-                    if (is_numeric($return)) 
-                        return floatval($return);
-                }
-                break;
-            case self::OUTPUT_RETVAL:
-                return $retval;
-                break;
+        foreach ($output as $line) {
+            // Break the output into "float rest"
+            list($value, $idstr) = explode(" ", $line, 2);
+
+            array_push($results, array( "id"=> new identity($idstr),
+                "strength"=>floatval($value))); 
         }
-        return false;
+
+        // Return the results
+        return $results;
     }
 }
 

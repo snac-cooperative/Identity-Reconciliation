@@ -23,11 +23,13 @@ interface stage {
      * and return a numeric value based on the strength of the string and the
      * computed function.
      *
-     * @param string $string The string to be parsed and/or matched.  
-     * @return float A numerical value representing this string's value in regards to
-     * the stage's definition, or false if the stage did not run.
+     * @param identity $search The identity to be evaluated.
+     * @param identity[] $list A list of identities to evaluate against.  This
+     * may be null.  
+     * @return array An array of matches and strengths,
+     * `{"id":identity, "strength":float}`.
      *
      */
-    public function run($string); 
+    public function run($search, $list); 
 
 }
