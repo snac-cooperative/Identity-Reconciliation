@@ -35,11 +35,40 @@ class identity {
     public $entity_type = null;
 
     /**
+     * string Postgres CPF ID
+     */
+    public $cpf_postgres_id = null;
+
+    /**
+     * string ARK ID
+     */
+    public $cpf_ark_id = null;
+
+    /**
      * Constructor
      *
      * @param string $string The original string to construct this identity
      */
     function __construct($string) {
-        $original_string = $string;
+        $this->original_string = $string;
+    }
+
+    /**
+     * String Of the class
+     */
+    function __toString() {
+        return "identity: " . $this->original_string;
+    }
+
+    /**
+     * Get Unique ID
+     *
+     * This returns a unique id for this particular identity object.  It
+     * should continue to be a hash of the values.
+     *
+     * @return string unique identifier for this identity
+     */
+    function unique_id() {
+        return md5($this->original_string);
     }
 }

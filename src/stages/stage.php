@@ -15,6 +15,15 @@
 interface stage {
 
     /**
+     * Get Name
+     *
+     * Gets the name of the stage and returns it.  This must return a string.
+     *
+     * @return string Name of the stage.
+     */
+    public function get_name();
+
+    /**
      * Run function
      *
      * This function is called by the reconciliation engine to execute this

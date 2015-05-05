@@ -23,6 +23,13 @@
 abstract class shell implements stage {
 
     /**
+     * Unique Name of this stage
+     *
+     * Should be overwritten with the proper name.
+     */
+    private $name = "Abstract Shell Stage";
+
+    /**
      * Shell script to run.
      *
      * This is the script path and name, including parameters.  It should be of
@@ -101,6 +108,15 @@ abstract class shell implements stage {
 
         // Return the results
         return $results;
+    }
+
+    /**
+     * Return the name of the stage
+     * 
+     * @return string Name of the stage
+     */
+    public function get_name() {
+        return $this->name;
     }
 }
 
