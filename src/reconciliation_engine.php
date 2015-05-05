@@ -12,33 +12,33 @@ require 'stages/elastic_name.php';
  *
  * @author Robbie Hott
  */
-class ReconciliationEngine {
+class reconciliation_engine {
 
-    /*
+    /**
      * Raw test results directly from the tests.  This is going to be per
      * test, then per ID.  Later, they will be parsed into a per ID, per test.
      */
     private $raw_results;
 
-    /*
+    /**
      * Array of tests to perform on the string.  These will have a listing in
      * the battery of tests.  A user may chose a list of tests, a preset list,
      * or write their own. 
      */ 
     private $tests;
 
-    /*
+    /**
      * Full test results per id
      */
     private $results;
 
-    /*
+    /**
      * Instance of the weighting class to produce the final value of a
      * weighted result vector.
      */
     private $weight;
 
-    /*
+    /**
      * Constructor
      */
     public function __construct() {
@@ -49,14 +49,14 @@ class ReconciliationEngine {
         return;
     }
 
-    /*
+    /**
      * Destructor
      */
     public function __destruct() {
         return;
     }
 
-    /*
+    /**
      * Main reconciliation function
      *
      * This function does the reconciliation and returns the top identity from
@@ -87,7 +87,7 @@ class ReconciliationEngine {
         return $this->top_result();
     }
 
-    /*
+    /**
      * Get the top result
      *
      * Returns the top result from the result set
@@ -101,7 +101,7 @@ class ReconciliationEngine {
             return null;
     }
 
-    /*
+    /**
      * Get the top result vector
      *
      * Returns the vector of result values for the top result
@@ -115,7 +115,7 @@ class ReconciliationEngine {
             return null;
     }
 
-    /*
+    /**
      * Get the top result value
      *
      * Returns the numeric value for the top result
@@ -140,7 +140,7 @@ class ReconciliationEngine {
         }
     }
 
-    /*
+    /**
      * Collate Results
      *
      * This function takes the raw output of the reconciliation engine and
@@ -175,7 +175,7 @@ class ReconciliationEngine {
      * Sorts the results by score, highest to lowest
      */
     private function sort_results() {
-        usort($this->results, array("ReconciliationEngine", "results_rsort"));
+        usort($this->results, array("reconciliation_engine", "results_rsort"));
     }
 
     /**
@@ -195,7 +195,8 @@ class ReconciliationEngine {
              return 0;
          return ($a["score"] < $b["score"]) ? 1 : -1;
      }
-    /*
+
+    /**
      * Auto load the stage classes
      */
     function __autoload($class_name) {
@@ -205,7 +206,7 @@ class ReconciliationEngine {
 }
 
 
-/*
+/**
  * Auto load the stage classes
  */
 function __autoload($class_name) {

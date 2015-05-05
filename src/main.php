@@ -5,10 +5,10 @@
 
 // Dependencies
 require 'vendor/autoload.php';
-require 'name_reconciliation.php';
+require 'reconciliation_engine.php';
 
-$engine = new ReconciliationEngine();
-$engine->reconcile(new identity("george washington 1732"));
+$engine = new reconciliation_engine();
+$engine->reconcile(new identity("george washington 1732-1799"));
 print_r($engine->get_results());
 
 echo "Done";
