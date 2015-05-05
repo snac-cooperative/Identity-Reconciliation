@@ -1,7 +1,9 @@
 <?php
 require 'classes/identity.php';
 require 'classes/static_weight.php';
+require 'stages/elastic_original.php';
 require 'stages/elastic_name.php';
+require 'stages/elastic_seventyfive.php';
 
 /**
  * Name Reconciliation Engine (Main Class)
@@ -43,7 +45,7 @@ class reconciliation_engine {
      */
     public function __construct() {
         $this->raw_results = array();
-        $this->tests = array(new elastic_name());
+        $this->tests = array(new elastic_original(), new elastic_name(), new elastic_seventyfive());
         $this->results = array();
         $this->weight = new static_weight();
         return;
@@ -68,7 +70,6 @@ class reconciliation_engine {
      * engine
      */
     public function reconcile($identity) {
-        echo $identity . "\n" . $identity->original_string . "\n";
         // Run the tests and collect the results
         foreach ($this->tests as $test) {
             $this->raw_results[$test->get_name()] = $test->run($identity, null);

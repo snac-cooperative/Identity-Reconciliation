@@ -9,18 +9,12 @@ require_once 'stages/elastic_abstract.php';
  *
  * @author Robbie Hott
  */
-class elastic_name extends elastic_abstract {
+class elastic_original extends elastic_abstract {
 
     /**
      * Name
      */
-    protected $name = "elastic_name";
-
-    /**
-     * Operator to use
-     */
-    protected $operator = "AND";
-
+    protected $name = "elastic_original";
 
     /**
      * Choose what parts to search
@@ -29,7 +23,6 @@ class elastic_name extends elastic_abstract {
      * @return string The search string;
      */
     protected function get_search_string($search) {
-        return $search->name_only;
+        return $search->original_string;
     }
-
 }

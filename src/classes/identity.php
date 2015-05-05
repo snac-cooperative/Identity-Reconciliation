@@ -30,6 +30,11 @@ class identity {
     public $original_string = "";
 
     /**
+     * string The full name of this entity (no dates or other information)
+     */
+    public $name_only = "";
+
+    /**
      * string Entity type
      */
     public $entity_type = null;
@@ -51,6 +56,19 @@ class identity {
      */
     function __construct($string) {
         $this->original_string = $string;
+    }
+
+    /**
+     * Parse original
+     *
+     * Tries to do its best to parse out the portions of the original string
+     * into other portions of the identity.
+     */
+    function parse_original() {
+        $matches = array();
+        preg_match("/^[a-zA-Z,. ]*/", $this->original_string, $matches);
+        if (count($matches > 0))
+            $this->name_only = $matches[0];
     }
 
     /**
