@@ -13,16 +13,5 @@ print_r($engine->get_results());
 
 echo "Done";
 
-// Testing
-//
-$client = new Elasticsearch\Client();
-
-$searchParams = array();
-$searchParams['index'] = 'snac';
-$searchParams['type']  = 'search_name';
-$searchParams['body']['query']['match']['official'] = 'washington, george';
-$queryResponse = $client->search($searchParams);
-
-//print_r($queryResponse);
 ?>
     
