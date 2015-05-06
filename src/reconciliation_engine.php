@@ -4,6 +4,7 @@ require 'classes/static_weight.php';
 require 'stages/elastic_original.php';
 require 'stages/elastic_name.php';
 require 'stages/elastic_seventyfive.php';
+require 'stages/original_length.php';
 
 /**
  * Name Reconciliation Engine (Main Class)
@@ -45,7 +46,7 @@ class reconciliation_engine {
      */
     public function __construct() {
         $this->raw_results = array();
-        $this->tests = array(new elastic_original(), new elastic_name(), new elastic_seventyfive());
+        $this->tests = array();
         $this->results = array();
         $this->weight = new static_weight();
         return;
@@ -56,6 +57,17 @@ class reconciliation_engine {
      */
     public function __destruct() {
         return;
+    }
+
+    /**
+     * Add stage
+     *
+     * Adds a stage to the list of stages to run
+     *
+     * @param string $stage name of the stage to include
+     */
+    public function add_stage($stage) {
+        array_push($this->tests, new $stage);
     }
 
     /**
@@ -151,20 +163,34 @@ class reconciliation_engine {
      */
     public function collate_results() {
         $tmp = array();
+        $all = array();
         foreach ($this->raw_results as $test => $res_list) {
             foreach ($res_list as $res) {
-                // Get Unique ID for this identity
-                $k = $res["id"]->unique_id();
-                // Create entry in the array if it doesn't exist
-                if (!array_key_exists($k, $tmp)) {
-                    $tmp[$k] = array("identity"=>$res["id"],
-                                     "score" => 0,
-                                     "vector" => array());
+                $k = null;
+                
+                if ($res["id"] == null) {
+                    // If the identity is null, this should apply to all results
+                    $all[$test] = $res["strength"];
+                } else {
+                    // Get Unique ID for this identity
+                    $k = $res["id"]->unique_id();
+                    // Create entry in the array if it doesn't exist
+                    if (!array_key_exists($k, $tmp)) {
+                        $tmp[$k] = array("identity"=>$res["id"],
+                                         "score" => 0,
+                                         "vector" => array());
+                    }
+                    // Store the strength value in the vector
+                    $tmp[$k]["vector"][$test] = $res["strength"];
                 }
-                // Store the strength value in the vector
-                $tmp[$k]["vector"][$test] = $res["strength"];
             }
         }
+        // Add any global results to every id's vector
+        foreach ($tmp as $k => $v) {
+            foreach ($all as $test => $result)
+                $tmp[$k]["vector"][$test] = $result;
+        }
+
         // Push the results on the result array
         foreach ($tmp as $res) 
             array_push($this->results, $res);
