@@ -32,11 +32,17 @@ interface stage {
      * and return a numeric value based on the strength of the string and the
      * computed function.
      *
+     * If the id in any of the id,strength pairs in the return is null, then
+     * that strength will be applied to all returned matches.  This allows
+     * for a stage that impacts all match quality, such as a search string
+     * strength calculation.
+     *
      * @param identity $search The identity to be evaluated.
      * @param identity[] $list A list of identities to evaluate against.  This
      * may be null.  
-     * @return array An array of matches and strengths,
-     * `{"id":identity, "strength":float}`.
+     * @return array An array of matches and strength pairs, ie an array of
+     * `array("id":identity, "strength":float)`. On error, it must at least
+     * return an empty array. It may not return null.
      *
      */
     public function run($search, $list); 

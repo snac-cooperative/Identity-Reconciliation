@@ -1,0 +1,5 @@
+docs/
+documentation/
+composer.phar
+composer.lock
+src/vendor
