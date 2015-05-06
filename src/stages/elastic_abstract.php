@@ -9,7 +9,7 @@ require_once 'stages/stage.php';
  *
  * @author Robbie Hott
  */
-abstract class elastic_abstract implements stage {
+abstract class elastic implements stage {
 
     /**
      * Name of the stage

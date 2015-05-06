@@ -1,5 +1,5 @@
 <?php
-require_once 'stages/elastic_abstract.php';
+require_once 'stages/elastic.php';
 
 /**
  * Elastic Search (Name) Stage
@@ -9,7 +9,7 @@ require_once 'stages/elastic_abstract.php';
  *
  * @author Robbie Hott
  */
-class elastic_original extends elastic_abstract {
+class elastic_original extends elastic {
 
     /**
      * Name
