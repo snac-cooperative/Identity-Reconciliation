@@ -5,6 +5,8 @@ require 'stages/elastic_original.php';
 require 'stages/elastic_name.php';
 require 'stages/elastic_seventyfive.php';
 require 'stages/original_length.php';
+require 'stages/original_length_difference.php';
+require 'stages/multi_stage.php';
 
 /**
  * Name Reconciliation Engine (Main Class)
@@ -67,7 +69,23 @@ class reconciliation_engine {
      * @param string $stage name of the stage to include
      */
     public function add_stage($stage) {
-        array_push($this->tests, new $stage);
+        // Load the class as a reflection
+        $class = new ReflectionClass($stage);
+        
+        if (func_num_args() < 2) {
+            // If only one argument, then create with no params
+            array_push($this->tests, $class->newInstance());
+        } else {
+            // If more than one argument, the rest are parameters to the constructor
+            $args = func_get_args();
+
+            // Remove the class name off the list
+            array_shift($args);
+
+            // Instantiate and add the class with the args
+            array_push($this->tests, $class->newInstanceArgs($args));
+        }
+            
     }
 
     /**
