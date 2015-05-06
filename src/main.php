@@ -8,6 +8,11 @@ require 'vendor/autoload.php';
 require 'reconciliation_engine.php';
 
 $engine = new reconciliation_engine();
+// Add stages to run
+$engine->add_stage("elastic_original");
+$engine->add_stage("elastic_name");
+$engine->add_stage("elastic_seventyfive");
+$engine->add_stage("original_length");
 
 // Create the new identity to search
 $identity = new identity("");
@@ -20,7 +25,6 @@ $engine->reconcile($identity);
 // Print the results
 print_r($engine->get_results());
 
-echo json_encode($engine->get_results());
 
 echo "Done";
 

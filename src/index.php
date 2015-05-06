@@ -17,6 +17,12 @@ if (isset($_GET['q'])) {
 
     $engine = new reconciliation_engine();
 
+    // Add stages to run
+    $engine->add_stage("elastic_original");
+    $engine->add_stage("elastic_name");
+    $engine->add_stage("elastic_seventyfive");
+    $engine->add_stage("original_length");
+
     // Create the new identity to search
     $identity = new identity($_GET['q']);
     $identity->parse_original();
