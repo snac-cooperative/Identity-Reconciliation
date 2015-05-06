@@ -1,4 +1,5 @@
 <?php
+namespace weights\helpers;
 
 /**
  * Weight Interface 

@@ -1,4 +1,5 @@
 <?php
+namespace stages;
 require_once 'stages/stage.php';
 
 /**
@@ -16,7 +17,7 @@ require_once 'stages/stage.php';
  * @author Robbie Hott
  */
 
-class multi_stage implements stage {
+class multi_stage implements helpers\stage {
 
     /**
      * Stages to run (instantiated by constructor)
@@ -32,8 +33,10 @@ class multi_stage implements stage {
      */
     public function __construct() {
         $this->stages = array();
-        foreach (func_get_args() as $stage)
-            array_push($this->stages, new $stage);
+        foreach (func_get_args() as $stage) {
+            $stage_full = "stages\\".$stage;
+            array_push($this->stages, new $stage_full);
+        }
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+namespace stages;
 require_once 'stages/elastic.php';
 
 /**
@@ -10,7 +11,7 @@ require_once 'stages/elastic.php';
  *
  * @author Robbie Hott
  */
-class elastic_seventyfive extends elastic {
+class elastic_seventyfive extends helpers\elastic {
 
     /**
      * Name

@@ -1,5 +1,6 @@
 <?php
-require_once 'classes/weight.php';
+namespace weights;
+require_once 'weights/weight.php';
 
 /**
  * Static Weight Class
@@ -9,7 +10,7 @@ require_once 'classes/weight.php';
  * 
  * @author Robbie Hott
  */
-class static_weight implements weight {
+class static_weight implements helpers\weight {
 
     /**
      * Implements the compute method in the weight interface.

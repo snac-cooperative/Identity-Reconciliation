@@ -1,4 +1,5 @@
 <?php
+namespace stages;
 require_once 'stages/stage.php';
 
 /**
@@ -13,7 +14,7 @@ require_once 'stages/stage.php';
  * @author Robbie Hott
  */
 
-class original_length_difference implements stage {
+class original_length_difference implements helpers\stage {
 
     /**
      * Get Name

@@ -1,4 +1,5 @@
 <?php
+namespace stages\helpers;
 require_once 'stages/stage.php';
 
 /**
@@ -65,7 +66,7 @@ abstract class elastic implements stage {
         $field = $this->field;
 
         // Create elastic search client
-        $client = new Elasticsearch\Client();
+        $client = new \Elasticsearch\Client();
 
         $searchParams = array();
         $searchParams['index'] = 'snac';
@@ -84,7 +85,7 @@ abstract class elastic implements stage {
         // Return the results
         $results = array();
         foreach($queryResponse["hits"]["hits"] as $hit) {
-            $id = new identity($hit["_source"]["official"]);
+            $id = new \identity($hit["_source"]["official"]);
             $id->cpf_postgres_id = $hit["_source"]["cpf_id"];
             $id->cpf_ark_id = $hit["_source"]["ark_id"];
                 

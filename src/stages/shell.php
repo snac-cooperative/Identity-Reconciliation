@@ -1,4 +1,5 @@
 <?php
+namespace stages\helpers;
 
 
 /**
@@ -54,7 +55,7 @@ abstract class shell implements stage {
      * @param identity $identity The identity to parse.  
      * @return string The combined string that will be sent to the shell script.
      */
-    protected combine_string($identity);
+    protected function combine_string($identity);
 
     /**
      * Run function
