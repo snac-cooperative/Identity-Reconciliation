@@ -22,6 +22,7 @@ if (isset($_GET['q'])) {
     $engine->add_stage("elastic_name");
     $engine->add_stage("elastic_seventyfive");
     $engine->add_stage("original_length");
+    $engine->add_stage("multi_stage", "elastic_name", "original_length_difference");
 
     // Create the new identity to search
     $identity = new identity($_GET['q']);
