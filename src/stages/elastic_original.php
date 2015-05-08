@@ -13,7 +13,7 @@ require_once 'stages/elastic.php';
 class elastic_original extends helpers\elastic {
 
     /**
-     * Name
+     * @var string Name
      */
     protected $name = "elastic_original";
 

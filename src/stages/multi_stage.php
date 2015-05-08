@@ -20,7 +20,7 @@ require_once 'stages/stage.php';
 class multi_stage implements helpers\stage {
 
     /**
-     * Stages to run (instantiated by constructor)
+     * @var array Stages to run (instantiated by constructor)
      */
     private $stages;
 
@@ -29,7 +29,7 @@ class multi_stage implements helpers\stage {
      *
      * Must take a list of text-based stages to instantiate
      *
-     * @param stage ...  $stage to instantiate
+     * @param helpers\stage $stage .. stages to instantiate
      */
     public function __construct() {
         $this->stages = array();

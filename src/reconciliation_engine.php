@@ -20,25 +20,25 @@ require 'stages/multi_stage.php';
 class reconciliation_engine {
 
     /**
-     * Raw test results directly from the tests.  This is going to be per
+     * @var array Raw test results directly from the tests.  This is going to be per
      * test, then per ID.  Later, they will be parsed into a per ID, per test.
      */
     private $raw_results;
 
     /**
-     * Array of tests to perform on the string.  These will have a listing in
+     * @var array Array of tests to perform on the string.  These will have a listing in
      * the battery of tests.  A user may chose a list of tests, a preset list,
      * or write their own. 
      */ 
     private $tests;
 
     /**
-     * Full test results per id
+     * @var array Full test results per id
      */
     private $results;
 
     /**
-     * Instance of the weighting class to produce the final value of a
+     * @var \weights\helpers\weight Instance of the weighting class to produce the final value of a
      * weighted result vector.
      */
     private $weight;

@@ -14,12 +14,12 @@ require_once 'stages/elastic.php';
 class elastic_seventyfive extends helpers\elastic {
 
     /**
-     * Name
+     * @var string Name
      */
     protected $name = "elastic_seventyfive";
 
     /**
-     * Must match threshold
+     * @var string Must match threshold
      */
     protected $min_match = "75%";
 

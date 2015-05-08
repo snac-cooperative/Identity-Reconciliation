@@ -24,14 +24,14 @@ namespace stages\helpers;
 abstract class shell implements stage {
 
     /**
-     * Unique Name of this stage
+     * @var string Unique Name of this stage
      *
      * Should be overwritten with the proper name.
      */
     private $name = "Abstract Shell Stage";
 
     /**
-     * Shell script to run.
+     * @var string Shell script to run.
      *
      * This is the script path and name, including parameters.  It should be of
      * the form:

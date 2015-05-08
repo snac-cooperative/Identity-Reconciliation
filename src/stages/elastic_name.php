@@ -13,12 +13,12 @@ require_once 'stages/elastic.php';
 class elastic_name extends helpers\elastic {
 
     /**
-     * Name
+     * @var string Name
      */
     protected $name = "elastic_name";
 
     /**
-     * Operator to use
+     * @var string Operator to use
      */
     protected $operator = "AND";
 

@@ -13,27 +13,27 @@ require_once 'stages/stage.php';
 abstract class elastic implements stage {
 
     /**
-     * Name of the stage
+     * @var string Name of the stage
      */
     protected $name = "";
 
     /**
-     * Field to search
+     * @var string Elastic Search result field to search
      */
     protected $field = "official";
 
     /**
-     * Operator to use in the search
+     * @var string Operator to use in the search
      */
     protected $operator = null;
 
     /**
-     * Number of results to return
+     * @var int Number of results to return
      */
     protected $num_results = 25;
 
     /**
-     * Minimum match required (percentage)
+     * @var string Minimum match required (percentage)
      */
     protected $min_match = null;
 

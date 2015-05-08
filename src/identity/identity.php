@@ -25,27 +25,27 @@ class identity {
      */
 
     /**
-     * string Original string
+     * @var string Original string
      */
     public $original_string = "";
 
     /**
-     * string The full name of this entity (no dates or other information)
+     * @var string The full name of this entity (no dates or other information)
      */
     public $name_only = "";
 
     /**
-     * string Entity type
+     * @var string Entity type
      */
     public $entity_type = null;
 
     /**
-     * string Postgres CPF ID
+     * @var string Postgres CPF ID
      */
     public $cpf_postgres_id = null;
 
     /**
-     * string ARK ID
+     * @var string ARK ID
      */
     public $cpf_ark_id = null;
 
