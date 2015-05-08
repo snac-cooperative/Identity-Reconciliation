@@ -53,8 +53,8 @@ abstract class elastic implements stage {
      *
      * Performs the body of the stage
      *
-     * @param identity $search The identity to be evaluated.
-     * @param identity[] $list A list of identities to evaluate against.  This
+     * @param \identity $search The identity to be evaluated.
+     * @param \identity[] $list A list of identities to evaluate against.  This
      * may be null.  
      * @return array An array of matches and strengths,
      * `{"id":identity, "strength":float}`.

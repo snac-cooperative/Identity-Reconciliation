@@ -20,7 +20,7 @@ class elastic_original extends helpers\elastic {
     /**
      * Choose what parts to search
      *
-     * @param identity $search The identity to parse
+     * @param \identity $search The identity to parse
      * @return string The search string;
      */
     protected function get_search_string($search) {

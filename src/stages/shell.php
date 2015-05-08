@@ -52,7 +52,7 @@ abstract class shell implements stage {
      * object, comines the interested parts of the identity together, then
      * returns the resulting string.
      *
-     * @param identity $identity The identity to parse.  
+     * @param \identity $identity The identity to parse.  
      * @return string The combined string that will be sent to the shell script.
      */
     protected function combine_string($identity);
@@ -65,8 +65,8 @@ abstract class shell implements stage {
      * defined output method and returns that to the caller. The string will be
      * escaped and wrapped with single quotes.
      *
-     * @param identity $search The identity to be evaluated.
-     * @param identity[] $list A list of identities to evaluate against.  This
+     * @param \identity $search The identity to be evaluated.
+     * @param \identity[] $list A list of identities to evaluate against.  This
      * may be null.  
      * @return array An array of matches and strengths,
      * `{"id":identity, "strength":float}`.
@@ -103,7 +103,7 @@ abstract class shell implements stage {
             // Break the output into "float rest"
             list($value, $idstr) = explode(" ", $line, 2);
 
-            array_push($results, array( "id"=> new identity($idstr),
+            array_push($results, array( "id"=> new \identity($idstr),
                 "strength"=>floatval($value))); 
         }
 

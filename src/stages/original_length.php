@@ -32,8 +32,8 @@ class original_length implements helpers\stage {
      * Calculates the natural log of the original_string and returns it as a
      * global modifier to all results.
      *
-     * @param identity $search The identity to be evaluated.
-     * @param identity[] $list A list of identities to evaluate against.  This
+     * @param \identity $search The identity to be evaluated.
+     * @param \identity[] $list A list of identities to evaluate against.  This
      * may be null.  
      * @return array An array of one element that has the log(length), ie 
      * `array("id":null, "strength":float)`. On error, it must at least

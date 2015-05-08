@@ -64,8 +64,8 @@ class multi_stage implements helpers\stage {
      * stage, each subsequent stage is given the former stage's result set as
      * the list.
      *
-     * @param identity $search The identity to be evaluated.
-     * @param identity[] $list A list of identities to evaluate against.  This
+     * @param \identity $search The identity to be evaluated.
+     * @param \identity[] $list A list of identities to evaluate against.  This
      * may be null.  
      * @return array An array of results from the final stage that has been
      * run or an empty array.
