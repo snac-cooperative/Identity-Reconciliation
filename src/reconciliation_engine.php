@@ -40,7 +40,7 @@ class reconciliation_engine {
     private $results;
 
     /**
-     * @var \weights\helpers\weight Instance of the weighting class to produce the final value of a
+     * @var weights\helpers\weight Instance of the weighting class to produce the final value of a
      * weighted result vector.
      */
     private $weight;
