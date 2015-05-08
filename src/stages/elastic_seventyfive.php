@@ -1,5 +1,5 @@
 <?php
-namespace stages;
+namespace reconciliation_engine\stages;
 require_once 'stages/elastic.php';
 
 /**

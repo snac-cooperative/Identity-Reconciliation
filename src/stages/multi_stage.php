@@ -1,5 +1,5 @@
 <?php
-namespace stages;
+namespace reconciliation_engine\stages;
 require_once 'stages/stage.php';
 
 /**
@@ -34,7 +34,7 @@ class multi_stage implements helpers\stage {
     public function __construct() {
         $this->stages = array();
         foreach (func_get_args() as $stage) {
-            $stage_full = "stages\\".$stage;
+            $stage_full = "reconciliation_engine\\stages\\".$stage;
             array_push($this->stages, new $stage_full);
         }
     }

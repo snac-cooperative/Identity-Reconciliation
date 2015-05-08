@@ -7,7 +7,7 @@
 require 'vendor/autoload.php';
 require 'reconciliation_engine.php';
 
-$engine = new reconciliation_engine();
+$engine = new reconciliation_engine\reconciliation_engine();
 // Add stages to run
 $engine->add_stage("elastic_original");
 $engine->add_stage("elastic_name");

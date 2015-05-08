@@ -1,5 +1,5 @@
 <?php
-namespace weights\helpers;
+namespace reconciliation_engine\weights\helpers;
 
 /**
  * Weight Interface 

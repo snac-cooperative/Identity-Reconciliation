@@ -1,4 +1,6 @@
 <?php
+namespace reconciliation_engine;
+
 require 'identity/identity.php';
 require 'weights/static_weight.php';
 require 'stages/elastic_original.php';
@@ -70,7 +72,7 @@ class reconciliation_engine {
      */
     public function add_stage($stage) {
         // Load the class as a reflection
-        $class = new ReflectionClass("stages\\".$stage);
+        $class = new \ReflectionClass("reconciliation_engine\stages\\".$stage);
         
         if (func_num_args() < 2) {
             // If only one argument, then create with no params

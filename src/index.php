@@ -15,7 +15,7 @@ header("Content-Type: application/json");
 
 if (isset($_GET['q'])) {
 
-    $engine = new reconciliation_engine();
+    $engine = new reconciliation_engine\reconciliation_engine();
 
     // Add stages to run
     $engine->add_stage("elastic_original");

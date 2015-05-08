@@ -1,5 +1,5 @@
 <?php
-namespace stages\helpers;
+namespace reconciliation_engine\stages\helpers;
 require_once 'stages/stage.php';
 
 /**
