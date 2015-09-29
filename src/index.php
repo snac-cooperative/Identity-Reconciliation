@@ -12,7 +12,6 @@ require 'vendor/autoload.php';
 require 'reconciliation_engine.php';
 
 header("Content-Type: application/json");
-
 if (isset($_GET['q'])) {
 
     $engine = new reconciliation_engine\reconciliation_engine();

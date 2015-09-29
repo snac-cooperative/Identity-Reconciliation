@@ -66,11 +66,15 @@ abstract class elastic implements stage {
         $field = $this->field;
 
         // Create elastic search client
-        $client = new \Elasticsearch\Client();
+        try {
+            $client = \Elasticsearch\ClientBuilder::create()->build();
+        } catch (Error $e) {
+            die("Could not instantiate Elastic Search");
+        }
 
         $searchParams = array();
         $searchParams['index'] = 'snac';
-        $searchParams['type']  = 'search_name_ark';
+        $searchParams['type']  = 'search_name';
         $searchParams['body']['query']['match'][$this->field]["query"] = $search_string;
         if ($this->min_match != null)
             $searchParams['body']['query']['match'][$this->field]['minimum_should_match'] = $this->min_match;

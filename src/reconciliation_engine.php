@@ -222,7 +222,7 @@ class reconciliation_engine {
      * Sorts the results by score, highest to lowest
      */
     private function sort_results() {
-        usort($this->results, array("reconciliation_engine", "results_rsort"));
+        usort($this->results, array("reconciliation_engine\\reconciliation_engine", "results_rsort"));
     }
 
     /**
