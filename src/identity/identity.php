@@ -50,6 +50,11 @@ class identity {
     public $cpf_ark_id = null;
 
     /**
+     * @var number Publicity
+     */
+    public $publicity = null;
+
+    /**
      * Constructor
      *
      * @param string $string The original string to construct this identity

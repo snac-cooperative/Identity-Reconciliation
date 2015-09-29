@@ -30,7 +30,7 @@ abstract class elastic implements stage {
     /**
      * @var int Number of results to return
      */
-    protected $num_results = 25;
+    protected $num_results = 2500;
 
     /**
      * @var string Minimum match required (percentage)
@@ -74,7 +74,7 @@ abstract class elastic implements stage {
 
         $searchParams = array();
         $searchParams['index'] = 'snac';
-        $searchParams['type']  = 'search_name';
+        $searchParams['type']  = 'name_and_rels';
         $searchParams['body']['query']['match'][$this->field]["query"] = $search_string;
         if ($this->min_match != null)
             $searchParams['body']['query']['match'][$this->field]['minimum_should_match'] = $this->min_match;
@@ -92,7 +92,7 @@ abstract class elastic implements stage {
             $id = new \identity($hit["_source"]["official"]);
             $id->cpf_postgres_id = $hit["_source"]["cpf_id"];
             $id->cpf_ark_id = $hit["_source"]["ark_id"];
-                
+            $id->publicity = $hit["_source"]["num_relations"]; 
             array_push($results, 
                 array("id"=> $id, "strength"=> $hit["_score"]));
         }

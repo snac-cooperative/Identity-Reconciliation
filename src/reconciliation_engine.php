@@ -8,6 +8,7 @@ require 'stages/elastic_name.php';
 require 'stages/elastic_seventyfive.php';
 require 'stages/original_length.php';
 require 'stages/original_length_difference.php';
+require 'stages/publicity.php';
 require 'stages/multi_stage.php';
 
 /**
@@ -44,6 +45,11 @@ class reconciliation_engine {
      * weighted result vector.
      */
     private $weight;
+
+    /**
+     * @var number Number of results to return
+     */
+    private $num_results = 25;
 
     /**
      * Constructor
@@ -231,7 +237,7 @@ class reconciliation_engine {
      * @return array The full array of results
      */
     public function get_results() {
-        return $this->results;
+        return array_splice($this->results,0,$this->num_results);
     }
     
     /**

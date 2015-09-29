@@ -13,7 +13,40 @@ The first line downloads and installs composer.  The second installs the package
 
     php main.php
 
-## Documentation
+
+## API Documentation
 
 Full API documentation is available [here](http://hott.iath.virginia.edu/reconciliation_docs).
 
+## Elastic Search Requirements
+
+Stages in the Reconciliation Engine that use Elastic Search require the following indices and types:
+
+```
+curl -XPUT "localhost:9200/_river/search_name/_meta" -d ' {  
+    "type" : "jdbc",
+    "jdbc" : {
+        "url" : "jdbc:postgresql://localhost:5432/eaccpf",
+        "user" : "snac",
+        "password" : "snacsnac",
+        "sql" : "select n.id, n.cpf_id,c.ark_id,n.original,off.original as official from name n left join cpf c on c.id = n.cpf_id left join name off on c.name_id = off.id",
+        "index" : "snac",
+        "type" : "search_name",
+        "strategy" : "oneshot"
+    }
+}'
+
+curl -XPUT "localhost:9200/_river/name_and_rels/_meta" -d ' {
+    "type" : "jdbc",
+    "jdbc" : {
+        "url" : "jdbc:postgresql://localhost:5432/eaccpf",
+        "user" : "snac",
+        "password" : "snacsnac",
+        "sql" : "select n.id, n.cpf_id,c.ark_id,n.original,off.original as official, rel.num_relations from name n left join cpf c on c.id = n.cpf_id left join name off on c.name_id = off.id left join (select cpf_id1 as cpf_id, count(*) as num_relations from cpf_relations group by cpf_id1) rel on n.cpf_id = rel.cpf_id;",
+        "index" : "snac",
+        "type" : "name_and_rels",
+        "strategy" : "oneshot"
+    }
+}'
+
+```

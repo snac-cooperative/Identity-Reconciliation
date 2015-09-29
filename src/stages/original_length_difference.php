@@ -53,7 +53,9 @@ class original_length_difference implements helpers\stage {
             // Compute the strength value
             $diff = strlen($search->original_string) - strlen($id->original_string);
             $diff = abs($diff);
-            $result = -1 * log($diff);
+            $result = 0;
+            if ($diff > 0)
+                $result = -4 * log($diff);
 
             // Save the result
             array_push($results, array("id"=>$id, "strength"=>$result));

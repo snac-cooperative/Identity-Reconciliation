@@ -22,6 +22,7 @@ if (isset($_GET['q'])) {
     $engine->add_stage("elastic_seventyfive");
     $engine->add_stage("original_length");
     $engine->add_stage("multi_stage", "elastic_name", "original_length_difference");
+    $engine->add_stage("multi_stage", "elastic_name", "publicity");
 
     // Create the new identity to search
     $identity = new identity($_GET['q']);
@@ -34,7 +35,12 @@ if (isset($_GET['q'])) {
     $output["search_identity"] = $identity;
     $output["results"] = $engine->get_results();
 
-    echo json_encode($output);
+    $toprint =  json_encode($output);
+
+    if ($toprint !== false)
+        echo $toprint;
+    else
+        echo "{ 'error' => 'could not parse object to json, " . json_last_error_msg() ."' }";
 }
 
 ?>

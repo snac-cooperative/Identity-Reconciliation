@@ -14,11 +14,13 @@ $engine->add_stage("elastic_name");
 $engine->add_stage("elastic_seventyfive");
 $engine->add_stage("original_length");
 $engine->add_stage("multi_stage", "elastic_name", "original_length_difference");
+    $engine->add_stage("multi_stage", "elastic_name", "publicity");
 
 // Create the new identity to search
 $identity = new identity("");
-$identity->original_string = "George Washington 1732";
-$identity->name_only = "George Washington";
+$identity->original_string = "George Washington University";
+//$identity->original_string = "George Washington 1732";
+//$identity->name_only = "George Washington";
 
 // Run the reconciliation engine against this identity
 $engine->reconcile($identity);
