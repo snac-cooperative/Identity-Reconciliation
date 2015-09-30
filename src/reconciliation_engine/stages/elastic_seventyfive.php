@@ -1,21 +1,26 @@
 <?php
 namespace reconciliation_engine\stages;
-require_once 'stages/elastic.php';
 
 /**
  * Elastic Search (Name) Stage
  *
  * This stage queries elastic search for the entire original name and returns
- * the list of identities that are the best matches for that string.
+ * the list of identities that are the best matches for that string. 75% of the
+ * original string must be matched
  *
  * @author Robbie Hott
  */
-class elastic_original extends helpers\elastic {
+class elastic_seventyfive extends helpers\elastic {
 
     /**
      * @var string Name
      */
-    protected $name = "elastic_original";
+    protected $name = "elastic_seventyfive";
+
+    /**
+     * @var string Must match threshold
+     */
+    protected $min_match = "75%";
 
     /**
      * Choose what parts to search

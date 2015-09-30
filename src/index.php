@@ -9,12 +9,19 @@
 
 // Dependencies
 require 'vendor/autoload.php';
-require 'reconciliation_engine.php';
+function my_autoload ($pClassName) {
+    include(__DIR__ . "/" . str_replace("\\", "/", $pClassName) . ".php");
+}
+spl_autoload_register("my_autoload");
+
+// USE Statements
+use \reconciliation_engine\identity\identity as identity;
+
 
 header("Content-Type: application/json");
 if (isset($_GET['q'])) {
 
-    $engine = new reconciliation_engine\reconciliation_engine();
+    $engine = new \reconciliation_engine\reconciliation_engine();
 
     // Add stages to run
     $engine->add_stage("elastic_original");

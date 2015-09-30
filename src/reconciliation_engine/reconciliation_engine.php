@@ -1,16 +1,6 @@
 <?php
 namespace reconciliation_engine;
 
-require 'identity/identity.php';
-require 'weights/static_weight.php';
-require 'stages/elastic_original.php';
-require 'stages/elastic_name.php';
-require 'stages/elastic_seventyfive.php';
-require 'stages/original_length.php';
-require 'stages/original_length_difference.php';
-require 'stages/publicity.php';
-require 'stages/multi_stage.php';
-
 /**
  * Name Reconciliation Engine (Main Class)
  *

@@ -103,7 +103,7 @@ abstract class shell implements stage {
             // Break the output into "float rest"
             list($value, $idstr) = explode(" ", $line, 2);
 
-            array_push($results, array( "id"=> new \identity($idstr),
+            array_push($results, array( "id"=> new \reconciliation_engine\identity\identity($idstr),
                 "strength"=>floatval($value))); 
         }
 

@@ -1,16 +1,17 @@
 <?php
 namespace reconciliation_engine\stages;
-require_once 'stages/stage.php';
 
 /**
- * Publicity stage
+ * Original length class
  *
- * This stage incorporates the publicity of the identity into the results value
+ * This stage computes the string length of the original search string and
+ * returns a strength of it.  Basically, it returns the natural log of the
+ * length.  The longer the string, the larger the number.
  *
  * @author Robbie Hott
  */
 
-class publicity implements helpers\stage {
+class original_length implements helpers\stage {
 
     /**
      * Get Name
@@ -20,7 +21,7 @@ class publicity implements helpers\stage {
      * @return string Name of the stage.
      */
     public function get_name() {
-        return "publicity";
+        return "original_length";
     }
 
 
@@ -33,25 +34,15 @@ class publicity implements helpers\stage {
      * @param \identity $search The identity to be evaluated.
      * @param \identity[] $list A list of identities to evaluate against.  This
      * may be null.  
-     * @return array 
-     *      
+     * @return array An array of one element that has the log(length), ie 
+     * `array("id":null, "strength":float)`. On error, it must at least
+     * return an empty array. It may not return null.
+     *
      */
     public function run($search, $list) {
-
-        $results = array();
-
-        foreach ($list as $id) {
-            $result = 0;
-            if ($id->publicity != null && $id->publicity > 0)
-                $result = 5 * log($id->publicity);
-            if (is_nan($result) || is_infinite($result))
-                $result = 0;
-
-            array_push($results, array("id"=>$id, "strength"=>$result));
-        }
-
-        return ($results);
-
+        $string = $search->original_string;
+        
+        return array(array("id"=> null, "strength"=> log(strlen($string))));
     }
 
 }

@@ -1,6 +1,5 @@
 <?php
 namespace reconciliation_engine\stages;
-require_once 'stages/stage.php';
 
 /**
  * Original length difference class

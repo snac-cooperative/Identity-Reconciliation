@@ -1,4 +1,5 @@
 <?php
+namespace reconciliation_engine\identity;
 
 /**
  * Identity Class

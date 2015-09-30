@@ -1,6 +1,5 @@
 <?php
 namespace reconciliation_engine\weights;
-require_once 'weights/weight.php';
 
 /**
  * Static Weight Class

@@ -1,6 +1,5 @@
 <?php
 namespace reconciliation_engine\stages\helpers;
-require_once 'stages/stage.php';
 
 /**
  * Elastic Search Abstract Stage
@@ -89,7 +88,7 @@ abstract class elastic implements stage {
         // Return the results
         $results = array();
         foreach($queryResponse["hits"]["hits"] as $hit) {
-            $id = new \identity($hit["_source"]["official"]);
+            $id = new \reconciliation_engine\identity\identity($hit["_source"]["official"]);
             $id->cpf_postgres_id = $hit["_source"]["cpf_id"];
             $id->cpf_ark_id = $hit["_source"]["ark_id"];
             $id->publicity = $hit["_source"]["num_relations"]; 
