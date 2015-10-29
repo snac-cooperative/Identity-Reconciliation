@@ -6,6 +6,7 @@
  * It requires a "q" argument with the name to parse and match. It will print out
  * as JSON the results from the reconciliation engine.
  */
+error_reporting(E_ALL);
 
 // Dependencies
 require 'vendor/autoload.php';
@@ -42,7 +43,7 @@ if (isset($_GET['q'])) {
     $output["search_identity"] = $identity;
     $output["results"] = $engine->get_results();
 
-    $toprint =  json_encode($output);
+    $toprint =  json_encode($output, JSON_PRETTY_PRINT);
 
     if ($toprint !== false)
         echo $toprint;

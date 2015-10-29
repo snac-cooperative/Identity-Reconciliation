@@ -98,6 +98,11 @@ class reconciliation_engine {
      * engine
      */
     public function reconcile($identity) {
+	unset($this->raw_results);
+	unset($this->results);
+        $this->raw_results = array();
+        $this->results = array();
+        $this->weight = new weights\static_weight();
         // Run the tests and collect the results
         foreach ($this->tests as $test) {
             $this->raw_results[$test->get_name()] = $test->run($identity, null);
