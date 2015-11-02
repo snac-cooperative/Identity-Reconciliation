@@ -42,7 +42,7 @@ if (isset($_GET['q'])) {
     $output["search_identity"] = $identity;
     $output["results"] = $engine->get_results();
 
-    $toprint =  json_encode($output);
+    $toprint =  json_encode($output, JSON_PRETTY_PRINT);
 
     if ($toprint !== false)
         echo $toprint;
