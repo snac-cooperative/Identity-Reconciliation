@@ -6,6 +6,7 @@
  * It requires a "q" argument with the name to parse and match. It will print out
  * as JSON the results from the reconciliation engine.
  */
+error_reporting(E_ALL);
 
 // Dependencies
 require 'vendor/autoload.php';
